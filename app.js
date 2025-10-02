@@ -3,7 +3,7 @@
 let pieChartInstance = null;
 
 // Google Apps ScriptのURL
-const API_URL = "https://script.google.com/macros/s/AKfycbzi4YkMpcMaU3KxP1V3YgEHTkH4geiDY-PRHjcM6Z-NDMiOnrlJJ2U8mpfr4pegeOaq/exec";ezvAMM7sQKOGQVA0CDh0mF8nAjx-j9zzO-yuNYXoJEtfPzXtjR/exec";
+const API_URL = "https://script.google.com/macros/s/AKfycbzi4YkMpcMaU3KxP1V3YgEHTkH4geiDY-PRHjcM6Z-NDMiOnrlJJ2U8mpfr4pegeOaq/exec";
 
 // DOM 要素
 const nameInput = document.getElementById("name-input");
