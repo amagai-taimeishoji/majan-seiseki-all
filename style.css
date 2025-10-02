@@ -235,9 +235,8 @@ h1, h2, h3 {
 }
 
 .loading-fill {
-  height: 100%;
-  background: linear-gradient(90deg, #4facfe, #00f2fe);
-  width: 0%;
+  width:0%; height:100%;
+  background: linear-gradient(90deg,#ff8b8b,#ff3b3b);
   transition: width 0.3s ease;
 }
 
