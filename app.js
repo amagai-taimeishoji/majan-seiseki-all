@@ -99,7 +99,7 @@ async function fetchAndRender(name) {
     statusMessage.textContent = "";
     results.style.display = "block";
 
-    document.getElementById("period").textContent = `集計期間: 全期間 〜 ${data["最終更新"]||"不明"}`;
+    document.getElementById("period").textContent = `${data["最終更新"]||"準備チュ"}`;
     document.getElementById("visitor-count").textContent = `集計人数: ${data["集計人数"]||"不明"} 人`;
     document.getElementById("member-info").textContent = `No. ${data["No."]?String(data["No."]).padStart(4,'0'):"不明"}   ${data["名前"]}`;
 
