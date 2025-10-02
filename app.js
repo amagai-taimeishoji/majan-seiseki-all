@@ -87,19 +87,26 @@ async function fetchAndRender(name) {
     const data = await res.json();
 
     if (data.error) {
-      statusMessage.textContent = data.error.includes("見つかりません") ? "データは見つからないよっ" : `エラー: ${data.error}`;
+      statusMessage.textContent = data.error.includes("見つかりません")
+        ? "データは見つからないよっ"
+        : `エラー: ${data.error}`;
       return;
     }
 
-    // 🔹 更新状況を「更新日時」で更新
-    updateStatusEl.textContent = data["更新日時"] || "不明";
+    //  更新日時の表示（「最終更新」ヘッダーをそのまま使う）
+    const updateStatusEl = document.getElementById("update-status");
+    updateStatusEl.textContent = data["最終更新"] || "────────";
 
     // 成功時の表示
     results.style.display = "block";
+    statusMessage.textContent = "";
 
+    document.getElementById("visitor-count").textContent =
+      `集計人数: ${data["集計人数"]||"不明"} 人`;
     document.getElementById("member-info").textContent =
       `No. ${data["No."]?String(data["No."]).padStart(4,'0'):"不明"}   ${data["名前"]}`;
-
+    
+    
     // ランキング
     createTable("ranking-table",[
       ["累計半荘数\nランキング","総スコア\nランキング","最高スコア\nランキング","平均スコア\nランキング","平均着順\nランキング"],
