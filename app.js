@@ -1,10 +1,9 @@
-// app.js - 全期間シートを名前で検索、ローディング付き（10半荘表示・棒グラフ削除）
 "use strict";
 
 let pieChartInstance = null;
 
-// Google Apps ScriptのURL（必要なら差し替えてください）
-const API_URL = "https://script.google.com/macros/s/AKfycby-JyuULrd8LD2CAoKYPR8z-CS58n6CdVBwx4YHGIDz-RWGcjw0N9mWUveCSSP1NAdK/exec";
+// Google Apps ScriptのURL
+const API_URL = "https://script.google.com/macros/s/AKfycbyzgYnnj-_AJQcGq_ezvAMM7sQKOGQVA0CDh0mF8nAjx-j9zzO-yuNYXoJEtfPzXtjR/exec";
 
 // DOM 要素
 const nameInput = document.getElementById("name-input");
@@ -15,7 +14,7 @@ const results = document.getElementById("results");
 const loadingArea = document.getElementById("loadingArea");
 const loadingFill = document.getElementById("loadingFill");
 const loadingText = document.getElementById("loadingText");
-// この要素にはローディング開始時に短い線を入れる（元の作りに合わせる）
+
 const updateStatusEl = document.getElementById("status-message");
 
 let waitingForData = false;
