@@ -15,7 +15,7 @@ const loadingArea = document.getElementById("loadingArea");
 const loadingFill = document.getElementById("loadingFill");
 const loadingText = document.getElementById("loadingText");
 
-// ← 更新状況表示エリア
+// 🔹 更新状況（常に表示）
 const updateStatusEl = document.getElementById("update-status");
 
 let waitingForData = false;
@@ -91,7 +91,7 @@ async function fetchAndRender(name) {
       return;
     }
 
-    // 🔹 更新状況を更新日時で上書き
+    // 🔹 更新状況を「更新日時」で更新
     updateStatusEl.textContent = data["更新日時"] || "不明";
 
     // 成功時の表示
