@@ -21,7 +21,7 @@ const updateStatusEl = document.getElementById("update-status");
 let waitingForData = false;
 let loadingStart = 0;
 let loadingRaf = 0;
-const LOADING_DURATION_MS = 1500; // 1.5秒でバーが100%
+const LOADING_DURATION_MS = 10000; // 10秒でバーが100%
 
 function startLoading() {
   loadingArea.style.display = "flex";
