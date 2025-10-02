@@ -104,7 +104,9 @@ h1, h2, h3 {
 
 /* 空セル非表示用 */
 .empty-cell {
-  display: none;
+  display:none;
+  border: none !important;
+  background: none !important;
 }
 
 #info-container {
