@@ -1,14 +1,14 @@
 /* --- 元のCSSほぼそのまま --- */
 body {
   font-family: 'Noto Sans JP', sans-serif;
-  margin: 0 auto; 
+  margin: 0 auto;
   padding: 0;
   background: none !important;
   background-color: #FFFFFF !important;
   text-align: center;
-  max-width: 100%; 
+  max-width: 100%;
   height: 200vh;
-  overflow-x: hidden; 
+  overflow-x: hidden;
 }
 
 h1, h2, h3 {
@@ -64,15 +64,6 @@ h1, h2, h3 {
   text-align: center;
 }
 
-#year-select, #month-select {
-  padding: 5px 12px;
-  font-size: 0.9rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  background-color: #fff;
-  transition: all 0.2s;
-}
-
 #name-input {
   flex: 1;
   min-width: 30%;
@@ -111,9 +102,9 @@ h1, h2, h3 {
   box-sizing: border-box;
 }
 
+/* 空セル非表示用 */
 .empty-cell {
-  border: none !important; /* 空白セルだけ枠線を消す */
-  background: none !important;
+  display: none;
 }
 
 #info-container {
@@ -198,19 +189,7 @@ h1, h2, h3 {
   align-items: flex-end;
 }
 
-/* 空セル非表示用 */
-.empty-cell {
-  display: none;
-}
-
-/* グラフ */
-#bar-chart {
-  width: 100%;
-  max-width: 90vw;
-  margin-bottom: 15px !important;
-  margin-top: -35px !important;
-}
-
+/* グラフ関連：円グラフは残す */
 #pie-chart {
   display: block;
   width: 85vw;
@@ -221,13 +200,13 @@ h1, h2, h3 {
   margin-bottom: 20px;
 }
 
-#bar-chart,
 #pie-chart {
   display: block;
   margin-left: 5vw;
   margin-right: auto;
 }
-  .setumei p1 {
+
+.setumei p1 {
   font-size: 3vw;   /* スマホなら画面幅に応じたサイズ */
   display: flex;
   flex-direction: column;
@@ -235,4 +214,34 @@ h1, h2, h3 {
   margin-left: 5vw;
   margin-bottom: 30px;
   margin-top: -30px !important;
+}
+
+/* ---------- ローディング用スタイル（追加） ---------- */
+.loading-area {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 10px 0 20px 0;
+}
+
+.loading-bar {
+  width: 80%;
+  height: 10px;
+  background: #eee;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: inset 0 0 2px rgba(0,0,0,0.08);
+}
+
+.loading-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #8ec5ff, #4caf50);
+  transition: width 0.08s linear;
+}
+
+.loading-text {
+  font-size: 3.5vw;
+  margin-top: 6px;
 }
