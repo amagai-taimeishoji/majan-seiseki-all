@@ -219,12 +219,11 @@ h1, h2, h3 {
 /* Loading */
 #loading-area {
   width:90%; margin:1rem auto;
-  display:none; 
-  flex-direction: column;
-  text-align: center;
-  align-items:center;
-  justify-content:space-between;
-  gap:0.5rem;
+  display: flex;
+  flex-direction: column; /* 縦方向に配置 */
+  align-items: center;
+  justify-content: center;
+  gap: 8px; 
 }
 .loading-bar {
   width: 80%;
