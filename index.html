@@ -7,57 +7,46 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-   <main>
-    <!-- 更新状況（常に表示） -->
+  <main>
+    <!-- 常に表示される更新状況 -->
     <div id="update-row">
-      <div id="update-label">更新状況(最終更新日時)</div>
+      <div id="update-label">更新状況(更新日時)</div>
       <div id="update-status">────────</div>
     </div>
      
-  <div id="search-area">
-    <div id="search-inputs">
-     
-      <input type="text" id="name-input" placeholder="名前を入力してねっ" />
-      <button id="search-button">検索</button>
-    </div>
-    <p id="status-message"></p>
-  </div>
-
-  <!-- ローディング表示　-->
-  <div id="loadingArea" class="loading-area" style="display:none;">
-    <div id="loadingBar" class="loading-bar">
-      <div id="loadingFill" class="loading-fill"></div>
-    </div>
-    <div id="loadingText" class="loading-text" style="display:none;">読み込みチュ...♡</div>
-  </div>
-
-  <div id="results" style="display: none;">
-    <div id="info-container">
-      <div id="period-visitor">
-        <div id="period"></div>
-        <div id="visitor-count" class="left-align-under"></div>
+    <div id="search-area">
+      <div id="search-inputs">
+        <input type="text" id="name-input" placeholder="名前を入力してねっ" />
+        <button id="search-button">検索</button>
       </div>
-      <div id="member-info"></div>
+      <p id="status-message"></p>
     </div>
 
-    <!-- ランキング -->
-    <div class="box15"><h3>ランキング</h3></div>
-    <div id="ranking-table" class="table"></div>
-    <div class="setumei">
-      <p1>※スタッフを含むランキング。</p1>
+    <!-- ローディング表示 -->
+    <div id="loadingArea" class="loading-area" style="display:none;">
+      <div id="loadingBar" class="loading-bar">
+        <div id="loadingFill" class="loading-fill"></div>
+      </div>
+      <div id="loadingText" class="loading-text" style="display:none;">読み込みチュ...♡</div>
     </div>
 
-    <!-- スコアデータ -->
-    <div class="box16"><h3>スコアデータ</h3></div>
-    <div id="scoredata-table" class="table"></div>
+    <div id="results" style="display:none;">
+      <div id="info-container">
+        <div id="member-info"></div>
+      </div>
 
+      <div class="box15"><h3>ランキング</h3></div>
+      <div id="ranking-table" class="table"></div>
+      <div class="setumei"><p1>※スタッフを含むランキング。</p1></div>
 
-    <!-- 着順データ -->
-    <div class="box18"><h3>着順データ</h3></div>
-    <div id="rank-count-table" class="table"></div>
-    <canvas id="pie-chart"></canvas>
-  </div>
- </main>
+      <div class="box16"><h3>スコアデータ</h3></div>
+      <div id="scoredata-table" class="table"></div>
+
+      <div class="box18"><h3>着順データ</h3></div>
+      <div id="rank-count-table" class="table"></div>
+      <canvas id="pie-chart"></canvas>
+    </div>
+  </main>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="app.js"></script>
 </body>
