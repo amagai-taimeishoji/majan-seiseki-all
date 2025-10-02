@@ -246,6 +246,12 @@ h1, h2, h3 {
   color: #444;
 }
 
+/* 更新状況 */
+#update-row {
+  margin: 0 auto 1rem;
+  text-align: left;
+  width: 90%;
+}
 #update-label { font-size: 0.9rem; color:#666; }
 #update-status { font-size: 1rem; font-weight:600; margin-top:0.3rem; }
 
