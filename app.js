@@ -15,7 +15,8 @@ const loadingArea = document.getElementById("loadingArea");
 const loadingFill = document.getElementById("loadingFill");
 const loadingText = document.getElementById("loadingText");
 
-const updateStatusEl = document.getElementById("status-message");
+// ← 更新状況表示エリア
+const updateStatusEl = document.getElementById("update-status");
 
 let waitingForData = false;
 let loadingStart = 0;
@@ -26,9 +27,8 @@ function startLoading() {
   loadingArea.style.display = "flex";
   loadingFill.style.width = "0%";
   loadingText.style.display = "block";
-  updateStatusEl.textContent = "────────";
 
-  waitingForData = true;  // データ取得を待機中にセット
+  waitingForData = true;
   loadingStart = performance.now();
   cancelAnimationFrame(loadingRaf);
   loadingRaf = requestAnimationFrame(loadingTick);
@@ -43,9 +43,7 @@ function loadingTick(now){
     loadingRaf = requestAnimationFrame(loadingTick);
   } else {
     if (waitingForData) {
-      // データまだ来てない → 表示を切り替える（要望の文言）
       loadingText.textContent = "もうちょっとまってほしい！";
-      // stopLoading() は呼ばない（そのままデータ到着を待つ）
     } else {
       stopLoading();
     }
@@ -55,16 +53,14 @@ function loadingTick(now){
 function stopLoading() {
   cancelAnimationFrame(loadingRaf);
   loadingFill.style.width = "100%";
-  // 少し待ってから非表示にしてリセット
   setTimeout(() => {
     loadingArea.style.display = "none";
     loadingFill.style.width = "0%";
     loadingText.style.display = "none";
-    // 状態表示はリセット（任意）
-    updateStatusEl.textContent = "";
   }, 220);
 }
 
+// 検索イベント
 searchButton.addEventListener("click", () => {
   const name = nameInput.value.trim();
   if (!name) {
@@ -95,13 +91,14 @@ async function fetchAndRender(name) {
       return;
     }
 
+    // 🔹 更新状況を更新日時で上書き
+    updateStatusEl.textContent = data["更新日時"] || "不明";
+
     // 成功時の表示
-    statusMessage.textContent = "";
     results.style.display = "block";
 
-    document.getElementById("period").textContent = `${data["最終更新"]||"準備チュ"}`;
-    document.getElementById("visitor-count").textContent = `集計人数: ${data["集計人数"]||"不明"} 人`;
-    document.getElementById("member-info").textContent = `No. ${data["No."]?String(data["No."]).padStart(4,'0'):"不明"}   ${data["名前"]}`;
+    document.getElementById("member-info").textContent =
+      `No. ${data["No."]?String(data["No."]).padStart(4,'0'):"不明"}   ${data["名前"]}`;
 
     // ランキング
     createTable("ranking-table",[
@@ -127,7 +124,7 @@ async function fetchAndRender(name) {
       ]
     ],5);
 
-    // 着順回数テーブル（空セルは非表示）
+    // 着順回数テーブル
     createTable("rank-count-table",[
       ["1着の回数","2着の回数","3着の回数","4着の回数"],
       [
@@ -136,12 +133,12 @@ async function fetchAndRender(name) {
         `${data["3着の回数"]||0}回`,
         `${data["4着の回数"]||0}回`
       ],
-      ["1.5着の回数","2.5着の回数","3.5着の回数",""], // 空セル追加
+      ["1.5着の回数","2.5着の回数","3.5着の回数",""],
       [
         `${data["1.5着の回数"]||0}回`,
         `${data["2.5着の回数"]||0}回`,
         `${data["3.5着の回数"]||0}回`,
-        "" // 空セル
+        ""
       ]
     ],4);
 
@@ -152,12 +149,8 @@ async function fetchAndRender(name) {
     console.error(e);
     statusMessage.textContent = `成績更新チュ♡今は見れません (${e.message})`;
   } finally {
-    // データ到着を待つフラグを解除して stopLoading が最後に処理されるようにする
     waitingForData = false;
-    // loadingTick が既に100%だったら stopLoading が呼ばれる。念のため確実に非表示にするため stopLoading を遅延実行
-    setTimeout(() => {
-      stopLoading();
-    }, 50);
+    setTimeout(() => stopLoading(), 50);
   }
 }
 
@@ -173,12 +166,9 @@ function createTable(id, rows, cols) {
       const div = document.createElement("div");
       div.textContent = cell;
       div.className = rowIndex % 2 === 0 ? "header" : "data";
-
-      // 空白セルなら "empty-cell" クラスを追加（CSSで display:none にしてある）
       if (!cell || cell.toString().trim() === "") {
         div.classList.add("empty-cell");
       }
-
       table.appendChild(div);
     });
   });
@@ -216,12 +206,7 @@ function createPieChart(data) {
     options:{
       responsive:true,
       maintainAspectRatio:true,
-      plugins:{
-        legend:{
-          display:true,
-          position:'left'
-        }
-      }
+      plugins:{ legend:{ display:true, position:'left' } }
     }
   });
 }
