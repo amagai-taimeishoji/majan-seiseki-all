@@ -245,3 +245,7 @@ h1, h2, h3 {
   font-size: 1.1em;
   color: #444;
 }
+
+#update-label { font-size: 0.9rem; color:#666; }
+#update-status { font-size: 1rem; font-weight:600; margin-top:0.3rem; }
+
